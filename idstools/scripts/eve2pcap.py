@@ -44,6 +44,7 @@ import json
 import argparse
 import base64
 from datetime import datetime
+from dateutil.parser import parse
 import ctypes
 import ctypes.util
 
@@ -126,8 +127,9 @@ class PcapDumper:
         libpcap.pcap_dump_close(self._pcap_dumper_t)
 
 def parse_timestamp(timestamp):
-    dt = datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%f-0600")
-    return (int(dt.strftime("%s")), dt.microsecond)
+    dt = parse(timestamp)
+    ret = (int(dt.strftime("%s")), dt.microsecond)
+    return ret
 
 def eve2pcap(event):
     if not "packet" in event:

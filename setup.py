@@ -8,6 +8,9 @@ setup(
     description="IDS Utility Library",
     author="Jason Ish",
     author_email="ish@unx.ca",
+    install_requires=[
+        "python-dateutil",
+    ],
     packages=[
         "idstools",
         "idstools.scripts",
